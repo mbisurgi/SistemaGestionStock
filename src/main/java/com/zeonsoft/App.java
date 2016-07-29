@@ -1,26 +1,46 @@
 package com.zeonsoft;
 
+import com.zeonsoft.dao.ComprobanteTangoDao;
 import com.zeonsoft.model.*;
-import com.zeonsoft.model.sistema.*;
+import javafx.application.Application;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class App
-{
+public class App extends Application{
     private List<Comprobante> comprobantes;
     private List<Articulo> articulos;
 
     public static void main( String[] args )
     {
+        launch(args);
+        //App app = new App();
+        //app.initData();
+        //app.mostrarDatos();
+        //app.actualizarStock();
+        //app.mostrarStock();
+    }
+
+    public void start(Stage primaryStage) throws Exception {
         App app = new App();
 
-        app.init();
-        //app.mostrarDatos();
-        app.actualizarStock();
-        app.mostrarStock();
+        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+        alert1.setTitle("Conexion a BD");
+        alert1.setHeaderText(null);
+        alert1.setContentText("Probar conexion a la base de datos...");
+        alert1.showAndWait();
+
+        List<Comprobante> listado = app.sincronizarComprobantes();
+
+        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+        alert2.setTitle("Conexion a BD");
+        alert2.setHeaderText(null);
+        alert2.setContentText("Conexion a la base de datos exitosa.");
+        alert2.showAndWait();
     }
 
     public App() {
@@ -28,7 +48,7 @@ public class App
         articulos = new ArrayList<Articulo>();
     }
 
-    private void init() {
+    private void initData() {
         //CREACION ARTICULOS
         Articulo art1 = new Articulo("1001", "Levadura");
         Articulo art2 = new Articulo("1002", "Margarina");
@@ -100,6 +120,10 @@ public class App
                 return o1.getFecha().compareTo(o2.getFecha());
             }
         });
+    }
+
+    private List<Comprobante> sincronizarComprobantes() {
+        return ComprobanteTangoDao.getInstancia().getComprobantesTango();
     }
 
     private void actualizarStock() {
