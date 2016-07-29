@@ -17,12 +17,12 @@ public class App extends Application{
 
     public static void main( String[] args )
     {
-        launch(args);
-        //App app = new App();
-        //app.initData();
-        //app.mostrarDatos();
-        //app.actualizarStock();
-        //app.mostrarStock();
+        //launch(args);
+        App app = new App();
+        app.initData();
+        app.mostrarDatos();
+        app.actualizarStock();
+        app.mostrarStock();
     }
 
     public void start(Stage primaryStage) throws Exception {
@@ -62,15 +62,15 @@ public class App extends Application{
         Comprobante compCpaFac3 = new ComprobanteCpaFac(Date.valueOf("2016-07-05"), "100001", "A000100004891");
 
             //ITEMS FACTURAS DE COMPRA
-        ItemComprobante item1 = new ItemComprobante(art1, 10, 50);
+        ItemComprobante item1 = new ItemComprobante(art1, 10, 5);
         ItemComprobante item2 = new ItemComprobante(art2, 12, 55);
-        ItemComprobante item3 = new ItemComprobante(art1, 5, 52);
-        ItemComprobante item4 = new ItemComprobante(art1, 5, 55);
+        ItemComprobante item3 = new ItemComprobante(art1, 5, 6);
+        //ItemComprobante item4 = new ItemComprobante(art1, 5, 55);
 
         compCpaFac1.getItems().add(item1);
         compCpaFac1.getItems().add(item2);
         compCpaFac2.getItems().add(item3);
-        compCpaFac3.getItems().add(item4);
+        //compCpaFac3.getItems().add(item4);
 
         comprobantes.add(compCpaFac1);
         comprobantes.add(compCpaFac2);
@@ -82,13 +82,13 @@ public class App extends Application{
         Comprobante compVtaFac3 = new ComprobanteVtaFac(Date.valueOf("2016-07-05"), "402101", "A000300124891");
 
             //ITEMS FACTURAS DE VENTA
-        ItemComprobante item5 = new ItemComprobante(art1, 8, 60);
-        ItemComprobante item6 = new ItemComprobante(art1, 2, 62);
-        ItemComprobante item7 = new ItemComprobante(art1, 3, 62);
+        ItemComprobante item5 = new ItemComprobante(art1, 5, 60);
+        //ItemComprobante item6 = new ItemComprobante(art1, 2, 62);
+        //ItemComprobante item7 = new ItemComprobante(art1, 3, 62);
 
         compVtaFac1.getItems().add(item5);
-        compVtaFac2.getItems().add(item6);
-        compVtaFac3.getItems().add(item7);
+        //compVtaFac2.getItems().add(item6);
+        //compVtaFac3.getItems().add(item7);
 
         comprobantes.add(compVtaFac1);
         comprobantes.add(compVtaFac2);
@@ -98,7 +98,7 @@ public class App extends Application{
         Comprobante compVtaCre1 = new ComprobanteVtaCre(Date.valueOf("2016-07-01"), "154001", "A000500214352");
 
             //ITEMS NOTAS DE CREDITO DE VENTA
-        ItemComprobante item8 = new ItemComprobante(art1, 5, 62);
+        ItemComprobante item8 = new ItemComprobante(art1, 2, 62);
 
         compVtaCre1.getItems().add(item8);
 
@@ -108,7 +108,7 @@ public class App extends Application{
         Comprobante compCpaCre1 = new ComprobanteCpaCre(Date.valueOf("2016-07-01"), "154001", "A000500214352");
 
             //ITEMS NOTAS DE CREDITO DE COMPRA
-        ItemComprobante item9 = new ItemComprobante(art1, 2, 62);
+        ItemComprobante item9 = new ItemComprobante(art1, 4, 6);
 
         compCpaCre1.getItems().add(item9);
 

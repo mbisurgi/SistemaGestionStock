@@ -12,7 +12,13 @@ public class ComprobanteVtaFac extends Comprobante {
 
     public void updateStock() {
         for (ItemComprobante item: this.getItems()) {
-            item.getArticulo().getStock().decreaseStock(item.getCantidad());
+            item.getArticulo().getStock().addItem(this.getFecha(), item.getCantidad() * -1, item.getPrecio());
+
+            int cantidadArt = item.getArticulo().getStock().getCantidad();
+
+            int newCantidad = cantidadArt + item.getCantidad() * -1;
+
+            item.getArticulo().getStock().setCantidad(newCantidad);
         }
     }
 }

@@ -12,7 +12,17 @@ public class ComprobanteCpaCre extends Comprobante {
 
     public void updateStock() {
         for (ItemComprobante item: this.getItems()) {
-            item.getArticulo().getStock().updateStock(item.getCantidad() * -1, item.getPrecio());
+            item.getArticulo().getStock().addItem(this.getFecha(), item.getCantidad() * -1, item.getPrecio());
+
+            int cantidadArt = item.getArticulo().getStock().getCantidad();
+            float costoArt = item.getArticulo().getStock().getCosto();
+
+            float costoTotal = (cantidadArt * costoArt) + (item.getCantidad() * -1 * item.getPrecio());
+            int newCantidad = cantidadArt + item.getCantidad() * -1;
+            float newCosto = costoTotal / newCantidad;
+
+            item.getArticulo().getStock().setCantidad(newCantidad);
+            item.getArticulo().getStock().setCosto(newCosto);
         }
     }
 }

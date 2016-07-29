@@ -43,6 +43,8 @@ public class Articulo {
         return "Articulo{" +
                 "nroArticulo='" + nroArticulo + '\'' +
                 ", nombreArticulo='" + nombreArticulo + '\'' +
+                ", unidades='" + this.stock.getCantidad() + '\'' +
+                ", costo='" + this.stock.getCosto() + '\'' +
                 '}';
     }
 }

@@ -41,7 +41,7 @@ public class HibernateUtilTango {
         // Establece el driver de conexion dependiente del RDBMS
         props.put("hibernate.connection.driver_class", "net.sourceforge.jtds.jdbc.Driver");
         // Establece la url de conexion dependiente del RDBMS
-        props.put("hibernate.connection.url", "jdbc:sqlserver://MAXI-DESKTOP\\SQLEXPRESS:1433;databaseName=Galias_SRL");
+        props.put("hibernate.connection.url", "jdbc:jtds:sqlserver://BC-GROUP-SERVER/database=Galias_SRL");
         // Establece el usuario
         props.put("hibernate.connection.username", "administrador");
         // Establece la clave

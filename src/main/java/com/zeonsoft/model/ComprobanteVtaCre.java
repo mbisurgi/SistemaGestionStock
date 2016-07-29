@@ -12,7 +12,13 @@ public class ComprobanteVtaCre extends Comprobante {
 
     public void updateStock() {
         for (ItemComprobante item: this.getItems()) {
-            item.getArticulo().getStock().updateStock(item.getCantidad(), item.getPrecio());
+            item.getArticulo().getStock().addItem(this.getFecha(), item.getCantidad(), item.getPrecio());
+
+            int cantidadArt = item.getArticulo().getStock().getCantidad();
+
+            int newCantidad = cantidadArt + item.getCantidad();
+
+            item.getArticulo().getStock().setCantidad(newCantidad);
         }
     }
 }
