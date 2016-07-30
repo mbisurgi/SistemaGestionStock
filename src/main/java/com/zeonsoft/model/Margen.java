@@ -34,4 +34,28 @@ public class Margen {
 
         return margen;
     }
+
+    public float getMargenFecha(Date desde, Date hasta) {
+        float margen = 0;
+
+        for (ItemMargen item: items) {
+            if (desde.compareTo(item.getFecha()) <= 0 && hasta.compareTo(item.getFecha()) >= 0) {
+                margen = margen + (item.getPrecioVta() - item.getPrecioCpa()) * item.getCantidad();
+            }
+        }
+
+        return margen;
+    }
+
+    public float getCmvFecha(Date desde, Date hasta) {
+        float cmv = 0;
+
+        for (ItemMargen item: items) {
+            if (desde.compareTo(item.getFecha()) <= 0 && hasta.compareTo(item.getFecha()) >= 0) {
+                cmv = cmv + (item.getPrecioCpa() * item.getCantidad());
+            }
+        }
+
+        return cmv;
+    }
 }

@@ -27,6 +27,13 @@ public class App extends Application{
         SistemaGestionStock.getInstancia().procesarComprobantes();
 
         app.mostrarStock();
+
+        Date desde = Date.valueOf("2016-05-31");
+        Date hasta = Date.valueOf("2016-06-24");
+
+        System.out.println(" Stock: " + SistemaGestionStock.getInstancia().getStock("122015066", desde, hasta));
+        System.out.println("Margen: " + SistemaGestionStock.getInstancia().getMargen("122015066", desde, hasta));
+        System.out.println("   CMV: " + SistemaGestionStock.getInstancia().getCmv("122015066", desde, hasta));
     }
 
     public void start(Stage primaryStage) throws Exception {
@@ -163,6 +170,16 @@ public class App extends Application{
             System.out.println("  " + art.toString());
 
             for (ItemStock item: art.getStock().getItems()) {
+                System.out.println("    " + item.toString());
+            }
+        }
+
+        System.out.println("Margen:");
+
+        for (Articulo art: SistemaGestionStock.getInstancia().getArticulos()) {
+            System.out.println("  " + art.toString());
+
+            for (ItemMargen item: art.getMargen().getItems()) {
                 System.out.println("    " + item.toString());
             }
         }

@@ -81,4 +81,50 @@ public class SistemaGestionStock {
     public List<Articulo> getArticulos() {
         return articulos;
     }
+
+    public int getStock(String nroArticulo, Date desde, Date hasta) {
+        Articulo art = buscarArticulo(nroArticulo);
+
+        int cantidad = 0;
+
+        if (art != null) {
+            cantidad = art.getStock().getStockFecha(desde, hasta);
+        }
+
+        return cantidad;
+    }
+
+    public float getMargen(String nroArticulo, Date desde, Date hasta) {
+        Articulo art = buscarArticulo(nroArticulo);
+
+        float margen = 0;
+
+        if (art != null) {
+            margen = art.getMargen().getMargenFecha(desde, hasta);
+        }
+
+        return margen;
+    }
+
+    public float getCmv(String nroArticulo, Date desde, Date hasta) {
+        Articulo art = buscarArticulo(nroArticulo);
+
+        float cmv = 0;
+
+        if (art != null) {
+            cmv = art.getMargen().getCmvFecha(desde, hasta);
+        }
+
+        return cmv;
+    }
+
+    private Articulo buscarArticulo(String nroArticulo) {
+        for (Articulo art: articulos) {
+            if (art.getNroArticulo().equals(nroArticulo)) {
+                return art;
+            }
+        }
+
+        return null;
+    }
 }

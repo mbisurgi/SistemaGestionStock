@@ -58,4 +58,15 @@ public class ItemMargen {
     public void setPrecioVta(float precioVta) {
         this.precioVta = precioVta;
     }
+
+    @Override
+    public String toString() {
+        return "ItemMargen{" +
+                "idItem=" + idItem +
+                ", fecha=" + fecha +
+                ", cantidad=" + cantidad +
+                ", precioCpa=" + precioCpa +
+                ", precioVta=" + precioVta +
+                '}';
+    }
 }

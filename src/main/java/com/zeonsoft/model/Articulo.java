@@ -1,5 +1,7 @@
 package com.zeonsoft.model;
 
+import java.sql.Date;
+
 public class Articulo {
     private String nroArticulo;
     private String nombreArticulo;
