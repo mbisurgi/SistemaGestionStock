@@ -1,5 +1,6 @@
 package com.zeonsoft.model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,19 @@ public class Margen {
         this.items = items;
     }
 
-    public void addItem() {
+    public void addItem(Date fecha, int cantidad, float precioCpa, float precioVta) {
+        ItemMargen item = new ItemMargen(fecha, cantidad, precioCpa, precioVta);
 
+        items.add(item);
+    }
+
+    public float obtenerMargen() {
+        float margen = 0;
+
+        for (ItemMargen item: items) {
+            margen = (item.getPrecioVta() - item.getPrecioCpa()) * item.getCantidad();
+        }
+
+        return margen;
     }
 }
