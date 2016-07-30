@@ -29,7 +29,7 @@ public class Margen {
         float margen = 0;
 
         for (ItemMargen item: items) {
-            margen = (item.getPrecioVta() - item.getPrecioCpa()) * item.getCantidad();
+            margen = margen + (item.getPrecioVta() - item.getPrecioCpa()) * item.getCantidad();
         }
 
         return margen;

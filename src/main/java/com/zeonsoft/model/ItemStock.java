@@ -7,7 +7,6 @@ public class ItemStock {
     private Date fecha;
     private int cantidad;
     private float precio;
-    private int cantidadDisponible;
 
     public ItemStock() {
     }
@@ -16,7 +15,6 @@ public class ItemStock {
         this.fecha = fecha;
         this.cantidad = cantidad;
         this.precio = precio;
-        this.cantidadDisponible = cantidad;
     }
 
     public int getIdItem() {
@@ -51,14 +49,6 @@ public class ItemStock {
         this.precio = precio;
     }
 
-    public int getCantidadDisponible() {
-        return cantidadDisponible;
-    }
-
-    public void setCantidadDisponible(int cantidadDisponible) {
-        this.cantidadDisponible = cantidadDisponible;
-    }
-
     @Override
     public String toString() {
         return "ItemStock{" +
@@ -66,7 +56,6 @@ public class ItemStock {
                 ", fecha=" + fecha +
                 ", cantidad=" + cantidad +
                 ", precio=" + precio +
-                ", cantidadDisponible=" + cantidadDisponible +
                 '}';
     }
 }

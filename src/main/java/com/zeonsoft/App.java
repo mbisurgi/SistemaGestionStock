@@ -1,5 +1,6 @@
 package com.zeonsoft;
 
+import com.zeonsoft.controller.SistemaGestionStock;
 import com.zeonsoft.dao.ComprobanteTangoDao;
 import com.zeonsoft.model.*;
 import javafx.application.Application;
@@ -19,9 +20,12 @@ public class App extends Application{
     {
         //launch(args);
         App app = new App();
-        app.initData();
-        app.mostrarDatos();
-        app.actualizarStock();
+        //app.initData();
+        //app.mostrarDatos();
+        //app.actualizarStock();
+
+        SistemaGestionStock.getInstancia().procesarComprobantes();
+
         app.mostrarStock();
     }
 
@@ -46,6 +50,8 @@ public class App extends Application{
     public App() {
         comprobantes = new ArrayList<Comprobante>();
         articulos = new ArrayList<Articulo>();
+
+        SistemaGestionStock.getInstancia();
     }
 
     private void initData() {
@@ -153,7 +159,7 @@ public class App extends Application{
     private void mostrarStock() {
         System.out.println("Stock:");
 
-        for (Articulo art: articulos) {
+        for (Articulo art: SistemaGestionStock.getInstancia().getArticulos()) {
             System.out.println("  " + art.toString());
 
             for (ItemStock item: art.getStock().getItems()) {
