@@ -4,6 +4,7 @@ public class Articulo {
     private String nroArticulo;
     private String nombreArticulo;
     private Stock stock;
+    private Margen margen;
 
     public Articulo() {
     }
@@ -12,6 +13,7 @@ public class Articulo {
         this.nroArticulo = nroArticulo;
         this.nombreArticulo = nombreArticulo;
         this.stock = new Stock();
+        this.margen = new Margen();
     }
 
     public String getNroArticulo() {
@@ -38,6 +40,14 @@ public class Articulo {
         this.stock = stock;
     }
 
+    public Margen getMargen() {
+        return margen;
+    }
+
+    public void setMargen(Margen margen) {
+        this.margen = margen;
+    }
+
     @Override
     public String toString() {
         return "Articulo{" +
@@ -45,6 +55,7 @@ public class Articulo {
                 ", nombreArticulo='" + nombreArticulo + '\'' +
                 ", unidades='" + this.stock.getCantidad() + '\'' +
                 ", costo='" + this.stock.getCosto() + '\'' +
+                ", margen='" + this.margen.getMargen() + '\'' +
                 '}';
     }
 }

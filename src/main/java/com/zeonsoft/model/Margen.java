@@ -25,7 +25,7 @@ public class Margen {
         items.add(item);
     }
 
-    public float obtenerMargen() {
+    public float getMargen() {
         float margen = 0;
 
         for (ItemMargen item: items) {
