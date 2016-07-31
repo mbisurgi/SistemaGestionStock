@@ -41,9 +41,9 @@ public class App extends Application{
     public void start(Stage primaryStage) throws Exception {
         App app = new App();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/FrmResumen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/FrmPrincipal.fxml"));
         primaryStage.setTitle("");
-        primaryStage.setScene(new Scene(root, 1056, 500));
+        primaryStage.setScene(new Scene(root, 1250, 650));
         primaryStage.setResizable(false);
         primaryStage.show();
     }

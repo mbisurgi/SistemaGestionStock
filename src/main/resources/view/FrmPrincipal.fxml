@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zeonsoft.view.ControllerFrmPrincipal">
+   <top>
+      <VBox prefHeight="47.0" prefWidth="1240.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="17.0" prefWidth="1376.0" text="Sistema de Gestion de Stock - Galias SRL" textFill="#ee3123">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <ToolBar prefHeight="165.0" prefWidth="1240.0">
+              <items>
+                <Button fx:id="btnSyncArticulos" mnemonicParsing="false" onAction="#btnSyncArticulosOnMouseClicked" prefHeight="27.0" prefWidth="150.0" text="Sync. Articulos" />
+                  <Separator orientation="VERTICAL" prefHeight="27.0" prefWidth="15.0" />
+                  <Label text="Desde:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dtpDesde" prefWidth="121.0" />
+                  <Label layoutX="129.0" layoutY="15.0" text="Hasta:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dtpHasta" layoutX="183.0" layoutY="11.0" prefWidth="121.0" />
+                  <Button fx:id="btnSyncComprobantes" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnSyncComprobantesOnMouseClicked" prefHeight="27.0" prefWidth="150.0" text="Sync. Comprobantes" />
+                  <Separator layoutX="164.0" layoutY="10.0" orientation="VERTICAL" prefHeight="27.0" prefWidth="15.0" />
+                  <Button fx:id="btnResumen" layoutX="538.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnResumenOnMouseClicked" prefHeight="27.0" prefWidth="150.0" text="Resumen" />
+              </items>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </ToolBar>
+         </children>
+      </VBox>
+   </top>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</BorderPane>
