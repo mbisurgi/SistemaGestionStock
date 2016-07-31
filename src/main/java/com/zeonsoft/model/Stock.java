@@ -45,7 +45,7 @@ public class Stock {
         items.add(item);
     }
 
-    public int getStockFecha(Date desde, Date hasta) {
+    public int getStockUniFecha(Date desde, Date hasta) {
         int cantidad = 0;
 
         for (ItemStock item: items) {
@@ -55,5 +55,17 @@ public class Stock {
         }
 
         return cantidad;
+    }
+
+    public float getStock$Fecha(Date desde, Date hasta) {
+        float valor = 0;
+
+        for (ItemStock item: items) {
+            if (desde.compareTo(item.getFecha()) <= 0 && hasta.compareTo(item.getFecha()) >= 0) {
+                valor = valor + (item.getCantidad() * item.getPrecio());
+            }
+        }
+
+        return valor;
     }
 }

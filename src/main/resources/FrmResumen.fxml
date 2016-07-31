@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zeonsoft.view.ControllerFrmResumen">
+   <top>
+      <Label prefHeight="29.0" prefWidth="1159.0" text="Resumen de Articulos" textFill="#ee3123" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </top>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+   <left>
+      <VBox prefHeight="461.0" prefWidth="130.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Desde:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <DatePicker fx:id="dtpDesde" prefHeight="27.0" prefWidth="121.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </DatePicker>
+            <Label layoutX="15.0" layoutY="20.0" text="Hasta:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="dtpHasta" layoutX="15.0" layoutY="38.0" prefHeight="27.0" prefWidth="121.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </DatePicker>
+            <Button fx:id="btnFiltrar" mnemonicParsing="false" onAction="#btnFiltrarOnMouseClicked" prefHeight="27.0" prefWidth="121.0" text="Filtrar">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="5.0" top="10.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <TableView fx:id="tblResumen" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="colNro" editable="false" prefWidth="95.0" text="Nro" />
+          <TableColumn fx:id="colArticulo" editable="false" prefWidth="160.0" text="Articulo" />
+            <TableColumn fx:id="colStockUni" prefWidth="95.0" text="Stock (uni)" />
+            <TableColumn fx:id="colStock$" prefWidth="95.0" text="Stock ($)" />
+            <TableColumn fx:id="colVentaUni" prefWidth="95.0" text="Venta (uni)" />
+            <TableColumn fx:id="colVenta$" prefWidth="95.0" text="Venta ($)" />
+            <TableColumn fx:id="colCmv$" prefWidth="95.0" text="CMV ($)" />
+            <TableColumn fx:id="colMargen$" prefWidth="95.0" text="Margen ($)" />
+            <TableColumn fx:id="colMargenPor" prefWidth="85.0" text="Margen (%)" />
+        </columns>
+         <BorderPane.margin>
+            <Insets left="5.0" top="10.0" />
+         </BorderPane.margin>
+      </TableView>
+   </center>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="100.0" prefWidth="135.0" text="TOTALES" textFill="#ee3123">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0" text="Stock ($)" textFill="#ee3123">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="lblStock$" alignment="CENTER" contentDisplay="RIGHT" layoutX="150.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0" text="Stock ($)">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="150.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0" text="Venta ($)" textFill="#ee3123">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="lblVenta$" alignment="CENTER" contentDisplay="RIGHT" layoutX="290.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0" text="Venta ($)" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="425.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0" text="CMV ($)" textFill="#ee3123">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="lblCmv$" alignment="CENTER" contentDisplay="RIGHT" layoutX="565.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0" text="CMV ($)" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="560.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0" text="Margen" textFill="#ee3123">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="lblMargen$" alignment="CENTER" contentDisplay="RIGHT" layoutX="665.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0" text="Margen ($)" />
+            <Label fx:id="lblMargenPor" alignment="CENTER" contentDisplay="RIGHT" layoutX="870.0" layoutY="10.0" prefHeight="100.0" prefWidth="100.0" text="Margen (%)" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

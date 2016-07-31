@@ -50,6 +50,17 @@ public class Articulo {
         this.margen = margen;
     }
 
+    public ArticuloView getArticuloView(Date desde, Date hasta) {
+        int stockUni = this.stock.getStockUniFecha(desde, hasta);
+        float stock$ = this.stock.getStock$Fecha(desde, hasta);
+        int ventaUni = this.margen.getVentaUniFecha(desde, hasta);
+        float venta$ = this.margen.getVenta$Fecha(desde, hasta);
+        float cmv$ = this.margen.getCmv$Fecha(desde, hasta);
+        float margen$ = this.margen.getMargen$Fecha(desde, hasta);
+
+        return new ArticuloView(this.nroArticulo, this.nombreArticulo, stockUni, stock$, ventaUni, venta$, cmv$, margen$);
+    }
+
     @Override
     public String toString() {
         return "Articulo{" +

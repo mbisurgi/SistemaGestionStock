@@ -31,13 +31,21 @@ public class SistemaGestionStock {
 
     private void init() {
         Articulo art1 = new Articulo("122015066", "LP EXT MALTA DIASTASICO 5KG");
+        Articulo art2 = new Articulo("132322093", "LIBERTINA GRASA 20KG");
 
         articulos.add(art1);
+        articulos.add(art2);
 
+        //MOVIMIENTOS SALDO INICIAL
         Comprobante cpa9999 = new ComprobanteCpaFac(Date.valueOf("2016-05-31"), "100001", "A999999999999");
-        ItemComprobante cpa999_1 = new ItemComprobante(art1, 10, 158.70f);
+        ItemComprobante cpa999_1 = new ItemComprobante(art1, 11, 158.70f);
+        ItemComprobante cpa999_2 = new ItemComprobante(art2, 144, 433.88f);
         cpa9999.getItems().add(cpa999_1);
+        cpa9999.getItems().add(cpa999_2);
 
+        comprobantes.add(cpa9999);
+
+        //MOVIMIENTOS DE JUNIO ART 122015055
         Comprobante vta0967 = new ComprobanteVtaFac(Date.valueOf("2016-06-03"), "100007", "A000100000967");
         ItemComprobante vta0967_1 = new ItemComprobante(art1, 1, 219.88f);
         vta0967.getItems().add(vta0967_1);
@@ -58,12 +66,42 @@ public class SistemaGestionStock {
         ItemComprobante cpa1837_1 = new ItemComprobante(art1, 5, 158.70f);
         cpa1837.getItems().add(cpa1837_1);
 
-        comprobantes.add(cpa9999);
         comprobantes.add(vta0967);
         comprobantes.add(vta1005);
         comprobantes.add(vta1163);
         comprobantes.add(vta1173);
         comprobantes.add(cpa1837);
+
+        //MOVIMIENTOS DE JUNIO ART 132322093
+        Comprobante vta1105 = new ComprobanteVtaFac(Date.valueOf("2016-06-23"), "100088", "A000100001105");
+        ItemComprobante vta1105_1 = new ItemComprobante(art2, 50, 542.52f);
+        ItemComprobante vta1105_2 = new ItemComprobante(art2, 20, 0f);
+        vta1105.getItems().add(vta1105_1);
+        vta1105.getItems().add(vta1105_2);
+
+        Comprobante vta1127 = new ComprobanteVtaFac(Date.valueOf("2016-06-24"), "100074", "A000100001127");
+        ItemComprobante vta1127_1 = new ItemComprobante(art2, 10, 0f);
+        vta1127.getItems().add(vta1127_1);
+
+        Comprobante cpa1590 = new ComprobanteCpaFac(Date.valueOf("2016-06-01"), "100001", "A004700031590");
+        ItemComprobante cpa1590_1 = new ItemComprobante(art2, 480, 433.88f);
+        ItemComprobante cpa1590_2 = new ItemComprobante(art2, 8, 433.88f);
+        cpa1590.getItems().add(cpa1590_1);
+        cpa1590.getItems().add(cpa1590_2);
+
+        Comprobante cpa1621 = new ComprobanteCpaFac(Date.valueOf("2016-06-01"), "100001", "A004700031621");
+        ItemComprobante cpa1621_1 = new ItemComprobante(art2, 92, 433.88f);
+        cpa1621.getItems().add(cpa1621_1);
+
+        Comprobante cpa1909 = new ComprobanteCpaFac(Date.valueOf("2016-06-29"), "100001", "A004700031909");
+        ItemComprobante cpa1909_1 = new ItemComprobante(art2, 208, 386.16f);
+        cpa1909.getItems().add(cpa1909_1);
+
+        comprobantes.add(vta1105);
+        comprobantes.add(vta1127);
+        comprobantes.add(cpa1590);
+        comprobantes.add(cpa1621);
+        comprobantes.add(cpa1909);
     }
 
     public void procesarComprobantes() {
@@ -88,7 +126,7 @@ public class SistemaGestionStock {
         int cantidad = 0;
 
         if (art != null) {
-            cantidad = art.getStock().getStockFecha(desde, hasta);
+            cantidad = art.getStock().getStockUniFecha(desde, hasta);
         }
 
         return cantidad;
@@ -100,7 +138,7 @@ public class SistemaGestionStock {
         float margen = 0;
 
         if (art != null) {
-            margen = art.getMargen().getMargenFecha(desde, hasta);
+            margen = art.getMargen().getMargen$Fecha(desde, hasta);
         }
 
         return margen;
@@ -112,10 +150,20 @@ public class SistemaGestionStock {
         float cmv = 0;
 
         if (art != null) {
-            cmv = art.getMargen().getCmvFecha(desde, hasta);
+            cmv = art.getMargen().getCmv$Fecha(desde, hasta);
         }
 
         return cmv;
+    }
+
+    public List<ArticuloView> getResumen(Date desde, Date hasta) {
+        List<ArticuloView> listado = new ArrayList<ArticuloView>();
+
+        for (Articulo art: articulos) {
+            listado.add(art.getArticuloView(desde, hasta));
+        }
+
+        return listado;
     }
 
     private Articulo buscarArticulo(String nroArticulo) {

@@ -1,10 +1,12 @@
-package com.zeonsoft;
+package com.zeonsoft.view;
 
 import com.zeonsoft.controller.SistemaGestionStock;
 import com.zeonsoft.dao.ComprobanteTangoDao;
 import com.zeonsoft.model.*;
 import javafx.application.Application;
-import javafx.scene.control.Alert;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.sql.Date;
@@ -18,40 +20,32 @@ public class App extends Application{
 
     public static void main( String[] args )
     {
-        //launch(args);
-        App app = new App();
+        launch(args);
+        //App app = new App();
         //app.initData();
         //app.mostrarDatos();
         //app.actualizarStock();
 
-        SistemaGestionStock.getInstancia().procesarComprobantes();
+        //SistemaGestionStock.getInstancia().procesarComprobantes();
 
-        app.mostrarStock();
+        //app.mostrarStock();
 
-        Date desde = Date.valueOf("2016-05-31");
-        Date hasta = Date.valueOf("2016-06-24");
+        //Date desde = Date.valueOf("2016-05-31");
+        //Date hasta = Date.valueOf("2016-06-30");
 
-        System.out.println(" Stock: " + SistemaGestionStock.getInstancia().getStock("122015066", desde, hasta));
-        System.out.println("Margen: " + SistemaGestionStock.getInstancia().getMargen("122015066", desde, hasta));
-        System.out.println("   CMV: " + SistemaGestionStock.getInstancia().getCmv("122015066", desde, hasta));
+        //System.out.println(" Stock: " + SistemaGestionStock.getInstancia().getStock("122015066", desde, hasta));
+        //System.out.println("Margen: " + SistemaGestionStock.getInstancia().getMargen("122015066", desde, hasta));
+        //System.out.println("   CMV: " + SistemaGestionStock.getInstancia().getCmv("122015066", desde, hasta));
     }
 
     public void start(Stage primaryStage) throws Exception {
         App app = new App();
 
-        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-        alert1.setTitle("Conexion a BD");
-        alert1.setHeaderText(null);
-        alert1.setContentText("Probar conexion a la base de datos...");
-        alert1.showAndWait();
-
-        List<Comprobante> listado = app.sincronizarComprobantes();
-
-        Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-        alert2.setTitle("Conexion a BD");
-        alert2.setHeaderText(null);
-        alert2.setContentText("Conexion a la base de datos exitosa.");
-        alert2.showAndWait();
+        Parent root = FXMLLoader.load(getClass().getResource("/FrmResumen.fxml"));
+        primaryStage.setTitle("");
+        primaryStage.setScene(new Scene(root, 1056, 500));
+        primaryStage.setResizable(false);
+        primaryStage.show();
     }
 
     public App() {

@@ -23,7 +23,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>com.zeonsoft.App</mainClass>
+              <mainClass>com.zeonsoft.view.App</mainClass>
             </manifest>
           </archive>
         </configuration>
