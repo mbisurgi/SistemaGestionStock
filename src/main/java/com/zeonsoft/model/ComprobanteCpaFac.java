@@ -1,5 +1,7 @@
 package com.zeonsoft.model;
 
+import com.zeonsoft.controller.SistemaGestionStock;
+
 import java.sql.Date;
 
 public class ComprobanteCpaFac extends Comprobante {
@@ -12,17 +14,19 @@ public class ComprobanteCpaFac extends Comprobante {
 
     public void updateStock() {
         for (ItemComprobante item: this.getItems()) {
-            item.getArticulo().getStock().addItem(this.getFecha(), item.getCantidad(), item.getPrecio());
+            Articulo art = SistemaGestionStock.getInstancia().buscarArticulo(item.getArticulo().getNroArticulo());
 
-            int cantidadArt = item.getArticulo().getStock().getCantidad();
-            float costoArt = item.getArticulo().getStock().getCosto();
+            art.getStock().addItem(this.getFecha(), item.getCantidad(), item.getPrecio());
+
+            int cantidadArt = art.getStock().getCantidad();
+            float costoArt = art.getStock().getCosto();
 
             float costoTotal = (cantidadArt * costoArt) + (item.getCantidad() * item.getPrecio());
             int newCantidad = cantidadArt + item.getCantidad();
             float newCosto = costoTotal / newCantidad;
 
-            item.getArticulo().getStock().setCantidad(newCantidad);
-            item.getArticulo().getStock().setCosto(newCosto);
+            art.getStock().setCantidad(newCantidad);
+            art.getStock().setCosto(newCosto);
         }
     }
 }

@@ -235,7 +235,7 @@ public class SistemaGestionStock {
         return listado;
     }
 
-    private Articulo buscarArticulo(String nroArticulo) {
+    public Articulo buscarArticulo(String nroArticulo) {
         for (Articulo art: articulos) {
             if (art.getNroArticulo().equals(nroArticulo)) {
                 return art;

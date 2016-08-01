@@ -1,5 +1,7 @@
 package com.zeonsoft.model;
 
+import com.zeonsoft.controller.SistemaGestionStock;
+
 import java.sql.Date;
 
 public class ComprobanteVtaCre extends Comprobante {
@@ -12,15 +14,17 @@ public class ComprobanteVtaCre extends Comprobante {
 
     public void updateStock() {
         for (ItemComprobante item: this.getItems()) {
-            float pcioCpa = item.getArticulo().getStock().getCosto();
+            Articulo art = SistemaGestionStock.getInstancia().buscarArticulo(item.getArticulo().getNroArticulo());
 
-            item.getArticulo().getStock().addItem(this.getFecha(), item.getCantidad(), pcioCpa);
+            float pcioCpa = art.getStock().getCosto();
 
-            int cantidadArt = item.getArticulo().getStock().getCantidad();
+            art.getStock().addItem(this.getFecha(), item.getCantidad(), pcioCpa);
+
+            int cantidadArt = art.getStock().getCantidad();
 
             int newCantidad = cantidadArt + item.getCantidad();
 
-            item.getArticulo().getStock().setCantidad(newCantidad);
+            art.getStock().setCantidad(newCantidad);
         }
     }
 }
