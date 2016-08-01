@@ -129,8 +129,12 @@ public class App extends Application{
         });
     }
 
-    private List<Comprobante> sincronizarComprobantes() {
-        return ComprobanteTangoDao.getInstancia().getComprobantesTango();
+    private void sincronizarArticulos() {
+        SistemaGestionStock.getInstancia().sincronizarArticulos();
+    }
+
+    private void sincronizarComprobantes(Date desde, Date hasta) {
+        SistemaGestionStock.getInstancia().sincronizarComprobantes(desde, hasta);
     }
 
     private void actualizarStock() {
