@@ -41,9 +41,9 @@ public class HibernateUtilSistema {
         // Establece el driver de conexion dependiente del RDBMS
         props.put("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
         // Establece la url de conexion dependiente del RDBMS
-        props.put("hibernate.connection.url", "jdbc:mysql://127.0.0.1:3306/hibernate");
+        props.put("hibernate.connection.url", "jdbc:mysql://127.0.0.1:3306/sistemagestionstock");
         // Establece el usuario
-        props.put("hibernate.connection.username", "administrador");
+        props.put("hibernate.connection.username", "root");
         // Establece la clave
         props.put("hibernate.connection.password", "maximati");
         // Establece el dialecto a utilizar

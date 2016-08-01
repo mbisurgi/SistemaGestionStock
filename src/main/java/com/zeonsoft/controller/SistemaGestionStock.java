@@ -1,5 +1,6 @@
 package com.zeonsoft.controller;
 
+import com.zeonsoft.dao.ArticuloDao;
 import com.zeonsoft.dao.ComprobanteDao;
 import com.zeonsoft.model.*;
 
@@ -15,7 +16,7 @@ public class SistemaGestionStock {
     private List<Comprobante> comprobantes;
 
     private SistemaGestionStock() {
-        articulos = new ArrayList<Articulo>();
+        articulos = ArticuloDao.getInstancia().getArticulos();
         comprobantes = new ArrayList<Comprobante>();
 
         init();
@@ -30,11 +31,11 @@ public class SistemaGestionStock {
     }
 
     private void init() {
-        Articulo art1 = new Articulo("122015066", "LP EXT MALTA DIASTASICO 5KG");
-        Articulo art2 = new Articulo("132322093", "LIBERTINA GRASA 20KG");
+        Articulo art1 = buscarArticulo("122015066");
+        Articulo art2 = buscarArticulo("132322093");
 
-        articulos.add(art1);
-        articulos.add(art2);
+        //articulos.add(art1);
+        //articulos.add(art2);
 
         //MOVIMIENTOS SALDO INICIAL
         Comprobante cpa9999 = new ComprobanteCpaFac(Date.valueOf("2016-05-31"), "100001", "A999999999999");
