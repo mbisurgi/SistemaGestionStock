@@ -118,22 +118,22 @@ public class ComprobanteDao {
             while (rs.next()) {
                 Comprobante comp = null;
 
-                if (rs.getString("tipo").equals("CPAFAC")) {
+                if (rs.getString("comp").equals("CPAFAC")) {
                     comp = new ComprobanteCpaFac(rs.getDate("fecha"), rs.getString("entidad"), rs.getString("nroComprobante"));
                     comp.setItems(getItems("CPAFAC", rs.getString("nroComprobante")));
                 }
 
-                if (rs.getString("tipo").equals("CPACRE")) {
+                if (rs.getString("comp").equals("CPACRE")) {
                     comp = new ComprobanteCpaCre(rs.getDate("fecha"), rs.getString("entidad"), rs.getString("nroComprobante"));
                     comp.setItems(getItems("CPACRE", rs.getString("nroComprobante")));
                 }
 
-                if (rs.getString("tipo").equals("VTAFAC")) {
+                if (rs.getString("comp").equals("VTAFAC")) {
                     comp = new ComprobanteVtaFac(rs.getDate("fecha"), rs.getString("entidad"), rs.getString("nroComprobante"));
                     comp.setItems(getItems("VTAFAC", rs.getString("nroComprobante")));
                 }
 
-                if (rs.getString("tipo").equals("VTACRE")) {
+                if (rs.getString("comp").equals("VTACRE")) {
                     comp = new ComprobanteVtaCre(rs.getDate("fecha"), rs.getString("entidad"), rs.getString("nroComprobante"));
                     comp.setItems(getItems("VTACRE", rs.getString("nroComprobante")));
                 }
@@ -155,7 +155,7 @@ public class ComprobanteDao {
         Connection con = PoolConnectionSistema.getInstancia().getConnection();
 
         try {
-            String sql = "Select * From itemscomprobante Where tipo = ? and nroComprobante = ?";
+            String sql = "Select * From itemscomprobante Where comp = ? and nroComprobante = ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, tipo);
