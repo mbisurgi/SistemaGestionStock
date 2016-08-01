@@ -110,13 +110,13 @@ public class SistemaGestionStock {
     public void sincronizarArticulos() {
         List<Articulo> articulosTango = ArticuloTangoDao.getInstancia().getArticulosTango();
 
-        System.out.println("Proceso Finalizado");
+        System.out.println("Proceso Finalizado Correctamente");
     }
 
     public void sincronizarComprobantes(Date desde, Date hasta) {
         List<Comprobante> comprobantesTango = ComprobanteTangoDao.getInstancia().getComprobantesTango(desde, hasta);
 
-        System.out.println("Proceso Finalizado");
+        System.out.println("Proceso Finalizado Correctamente");
     }
 
     public void procesarComprobantes() {
