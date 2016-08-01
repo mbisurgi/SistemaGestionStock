@@ -106,15 +106,15 @@ public class SistemaGestionStock {
     }
 
     public void sincronizarArticulos() {
-        Map<String, Articulo> articulos = new HashMap<String, Articulo>();
+        Map<String, Articulo> articulosSync = new HashMap<String, Articulo>();
         List<Articulo> articulosTango = ArticuloTangoDao.getInstancia().getArticulosTango();
 
         for (Articulo art: this.articulos) {
-            articulos.put(art.getNroArticulo(), art);
+            articulosSync.put(art.getNroArticulo(), art);
         }
 
         for (Articulo art: articulosTango) {
-            if (!articulos.containsKey(art.getNroArticulo())) {
+            if (!articulosSync.containsKey(art.getNroArticulo())) {
                 ArticuloDao.getInstancia().insert(art);
                 this.articulos.add(art);
             }
@@ -124,24 +124,24 @@ public class SistemaGestionStock {
     }
 
     public void sincronizarComprobantes(Date desde, Date hasta) {
-        Map<String, Comprobante> comprobantes = new HashMap<String, Comprobante>();
+        Map<String, Comprobante> comprobantesSync = new HashMap<String, Comprobante>();
         List<Comprobante> comprobantesTango = ComprobanteTangoDao.getInstancia().getComprobantesTango(desde, hasta);
 
         for (Comprobante comp: this.comprobantes) {
             if (comp instanceof ComprobanteCpaFac) {
-                comprobantes.put("CPAFAC" + comp.getNroComprobante(), comp);
+                comprobantesSync.put("CPAFAC" + comp.getNroComprobante(), comp);
             }
 
             if (comp instanceof ComprobanteCpaCre) {
-                comprobantes.put("CPACRE" + comp.getNroComprobante(), comp);
+                comprobantesSync.put("CPACRE" + comp.getNroComprobante(), comp);
             }
 
             if (comp instanceof ComprobanteVtaFac) {
-                comprobantes.put("VTAFAC" + comp.getNroComprobante(), comp);
+                comprobantesSync.put("VTAFAC" + comp.getNroComprobante(), comp);
             }
 
             if (comp instanceof ComprobanteVtaCre) {
-                comprobantes.put("VTACRE" + comp.getNroComprobante(), comp);
+                comprobantesSync.put("VTACRE" + comp.getNroComprobante(), comp);
             }
         }
 
@@ -164,7 +164,7 @@ public class SistemaGestionStock {
                 tipo = "VTACRE";
             }
 
-            if (!comprobantes.containsKey(tipo + comp.getNroComprobante())) {
+            if (!comprobantesSync.containsKey(tipo + comp.getNroComprobante())) {
                 ComprobanteDao.getInstancia().insertComprobante(comp);
                 this.comprobantes.add(comp);
             }
