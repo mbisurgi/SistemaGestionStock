@@ -23,6 +23,24 @@ public class ArticuloDao {
         return instancia;
     }
 
+    public void insert(Articulo art) {
+        Connection con = PoolConnectionSistema.getInstancia().getConnection();
+
+        try {
+            String sql = "Insert Into articulos (nroArticulo, nombreArticulo) Values (?, ?)";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, art.getNroArticulo());
+            ps.setString(2, art.getNombreArticulo());
+
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+
+        } finally {
+            PoolConnectionSistema.getInstancia().releaseConnection(con);
+        }
+    }
+
     public List<Articulo> getArticulos() {
         List<Articulo> articulos = new ArrayList<Articulo>();
 

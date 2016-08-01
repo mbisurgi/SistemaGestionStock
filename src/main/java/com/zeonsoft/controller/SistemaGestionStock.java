@@ -7,9 +7,7 @@ import com.zeonsoft.dao.ComprobanteTangoDao;
 import com.zeonsoft.model.*;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class SistemaGestionStock {
     private static SistemaGestionStock instancia = null;
@@ -108,7 +106,19 @@ public class SistemaGestionStock {
     }
 
     public void sincronizarArticulos() {
+        Map<String, Articulo> articulos = new HashMap<String, Articulo>();
         List<Articulo> articulosTango = ArticuloTangoDao.getInstancia().getArticulosTango();
+
+        for (Articulo art: this.articulos) {
+            articulos.put(art.getNroArticulo(), art);
+        }
+
+        for (Articulo art: articulosTango) {
+            if (!articulos.containsKey(art.getNroArticulo())) {
+                ArticuloDao.getInstancia().insert(art);
+                this.articulos.add(art);
+            }
+        }
 
         System.out.println("Proceso Finalizado Correctamente");
     }
