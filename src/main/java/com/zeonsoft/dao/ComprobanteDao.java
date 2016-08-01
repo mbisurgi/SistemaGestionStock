@@ -52,8 +52,11 @@ public class ComprobanteDao {
             ps.setString(4, comp.getEntidad());
 
             ps.executeUpdate();
-        } catch (SQLException ex) {
 
+            insertItems(comp);
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            System.out.println("Stack Trace: " + ex.getStackTrace());
         } finally {
             PoolConnectionSistema.getInstancia().releaseConnection(con);
         }
@@ -93,7 +96,8 @@ public class ComprobanteDao {
                 ps.executeUpdate();
             }
         } catch (SQLException ex) {
-
+            System.out.println("Error: " + ex.getMessage());
+            System.out.println("Stack Trace: " + ex.getStackTrace());
         } finally {
             PoolConnectionSistema.getInstancia().releaseConnection(con);
         }
