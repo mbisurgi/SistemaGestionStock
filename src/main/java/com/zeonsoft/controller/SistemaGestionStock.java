@@ -17,9 +17,9 @@ public class SistemaGestionStock {
 
     private SistemaGestionStock() {
         articulos = ArticuloDao.getInstancia().getArticulos();
-        comprobantes = new ArrayList<Comprobante>();
+        comprobantes = ComprobanteDao.getInstancia().getComprobantes();
 
-        init();
+        //init();
     }
 
     public static SistemaGestionStock getInstancia() {

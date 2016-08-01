@@ -1,5 +1,6 @@
 package com.zeonsoft.view;
 
+import com.zeonsoft.controller.SistemaGestionStock;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +36,7 @@ public class ControllerFrmPrincipal implements Initializable {
 
     @FXML
     private void btnSyncArticulosOnMouseClicked(Event event) {
-
+        SistemaGestionStock.getInstancia().sincronizarArticulos();
     }
 
     @FXML
@@ -43,7 +44,7 @@ public class ControllerFrmPrincipal implements Initializable {
         Date desde = Date.valueOf(dtpDesde.getValue());
         Date hasta = Date.valueOf(dtpHasta.getValue());
 
-
+        SistemaGestionStock.getInstancia().sincronizarComprobantes(desde, hasta);
     }
 
     @FXML

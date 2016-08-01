@@ -27,8 +27,8 @@ public class PoolConnectionTango {
 
     private Connection connect() {
         try {
-            Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:jtds:sqlserver://BC-GROUP-SERVER/database=Galias_SRL", "sa_ale74", "Epec9854");
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://192.163.220.119:1433;database=Galias_SRL;user=sa_ale74;password=Epec9854");
 
             return con;
         } catch (SQLException exSql) {
