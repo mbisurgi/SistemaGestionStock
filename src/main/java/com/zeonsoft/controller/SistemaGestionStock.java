@@ -1,6 +1,7 @@
 package com.zeonsoft.controller;
 
 import com.zeonsoft.dao.ArticuloDao;
+import com.zeonsoft.dao.ArticuloTangoDao;
 import com.zeonsoft.dao.ComprobanteDao;
 import com.zeonsoft.dao.ComprobanteTangoDao;
 import com.zeonsoft.model.*;
@@ -106,10 +107,16 @@ public class SistemaGestionStock {
         comprobantes.add(cpa1909);
     }
 
+    public void sincronizarArticulos() {
+        List<Articulo> articulosTango = ArticuloTangoDao.getInstancia().getArticulosTango();
+
+        System.out.println("Proceso Finalizado");
+    }
+
     public void sincronizarComprobantes(Date desde, Date hasta) {
         List<Comprobante> comprobantesTango = ComprobanteTangoDao.getInstancia().getComprobantesTango(desde, hasta);
 
-        System.out.printf("Proceso Finalizado");
+        System.out.println("Proceso Finalizado");
     }
 
     public void procesarComprobantes() {
