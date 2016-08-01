@@ -27,7 +27,7 @@ public class ComprobanteDao {
         Connection con = PoolConnectionSistema.getInstancia().getConnection();
 
         try {
-            String sql = "Insert Into comprobantes (tipo, nroComprobante, fecha, entidad) Values (?, ?, ?, ?)";
+            String sql = "Insert Into comprobantes (comp, nroComprobante, fecha, entidad) Values (?, ?, ?, ?)";
 
             PreparedStatement ps = con.prepareStatement(sql);
 
