@@ -26,7 +26,7 @@ public class ArticuloDao {
     public List<Articulo> getArticulos() {
         List<Articulo> articulos = new ArrayList<Articulo>();
 
-        Connection con = PoolConnection.getInstancia().getConnection();
+        Connection con = PoolConnectionSistema.getInstancia().getConnection();
 
         try {
             String sql = "Select * From articulos";
@@ -43,7 +43,7 @@ public class ArticuloDao {
         } catch (SQLException ex) {
 
         } finally {
-            PoolConnection.getInstancia().releaseConnection(con);
+            PoolConnectionSistema.getInstancia().releaseConnection(con);
         }
 
         return articulos;
@@ -52,7 +52,7 @@ public class ArticuloDao {
     public Articulo getArticulo(String nroArticulo) {
         Articulo art = null;
 
-        Connection con = PoolConnection.getInstancia().getConnection();
+        Connection con = PoolConnectionSistema.getInstancia().getConnection();
 
         try {
             String sql = "Select * From articulos Where nroArticulo = ?";
@@ -68,7 +68,7 @@ public class ArticuloDao {
         } catch (SQLException ex) {
 
         } finally {
-            PoolConnection.getInstancia().releaseConnection(con);
+            PoolConnectionSistema.getInstancia().releaseConnection(con);
         }
 
         return art;

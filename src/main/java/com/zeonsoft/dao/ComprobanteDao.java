@@ -1,8 +1,6 @@
 package com.zeonsoft.dao;
 
 import com.zeonsoft.model.*;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.sql.*;
@@ -26,7 +24,7 @@ public class ComprobanteDao {
     }
 
     public void insertComprobante(Comprobante comp) {
-        Connection con = PoolConnection.getInstancia().getConnection();
+        Connection con = PoolConnectionSistema.getInstancia().getConnection();
 
         try {
             String sql = "Insert Into comprobantes (tipo, nroComprobante, fecha, entidad) Values (?, ?, ?, ?)";
@@ -58,14 +56,14 @@ public class ComprobanteDao {
         } catch (SQLException ex) {
 
         } finally {
-            PoolConnection.getInstancia().releaseConnection(con);
+            PoolConnectionSistema.getInstancia().releaseConnection(con);
         }
     }
 
     public List<Comprobante> getComprobantes() {
         List<Comprobante> comprobantes = new ArrayList<Comprobante>();
 
-        Connection con = PoolConnection.getInstancia().getConnection();
+        Connection con = PoolConnectionSistema.getInstancia().getConnection();
 
         try {
             String sql = "Select * From comprobantes";
@@ -102,7 +100,7 @@ public class ComprobanteDao {
         } catch (SQLException ex) {
 
         } finally {
-            PoolConnection.getInstancia().releaseConnection(con);
+            PoolConnectionSistema.getInstancia().releaseConnection(con);
         }
 
         return comprobantes;
@@ -111,7 +109,7 @@ public class ComprobanteDao {
     public List<ItemComprobante> getItems(String tipo, String nroComprobante) {
         List<ItemComprobante> items = new ArrayList<ItemComprobante>();
 
-        Connection con = PoolConnection.getInstancia().getConnection();
+        Connection con = PoolConnectionSistema.getInstancia().getConnection();
 
         try {
             String sql = "Select * From itemscomprobante Where tipo = ? and nroComprobante = ?";
@@ -131,7 +129,7 @@ public class ComprobanteDao {
         } catch (SQLException ex) {
 
         } finally {
-            PoolConnection.getInstancia().releaseConnection(con);
+            PoolConnectionSistema.getInstancia().releaseConnection(con);
         }
 
         return items;

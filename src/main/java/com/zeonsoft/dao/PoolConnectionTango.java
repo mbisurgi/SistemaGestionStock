@@ -6,20 +6,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PoolConnection {
+public class PoolConnectionTango {
     private List<Connection> connections = new ArrayList<Connection>();
 
-    private static PoolConnection instancia = null;
+    private static PoolConnectionTango instancia = null;
 
-    private PoolConnection() {
+    private PoolConnectionTango() {
         for (int i = 0; i < 5; i++) {
             connections.add(connect());
         }
     }
 
-    public static PoolConnection getInstancia() {
+    public static PoolConnectionTango getInstancia() {
         if (instancia == null) {
-            instancia = new PoolConnection();
+            instancia = new PoolConnectionTango();
         }
 
         return instancia;
@@ -27,8 +27,8 @@ public class PoolConnection {
 
     private Connection connect() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistemagestionstock", "root", "maximati");
+            Class.forName("net.sourceforge.jtds.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:jtds:sqlserver://BC-GROUP-SERVER/database=Galias_SRL", "sa_ale74", "Epec9854");
 
             return con;
         } catch (SQLException exSql) {

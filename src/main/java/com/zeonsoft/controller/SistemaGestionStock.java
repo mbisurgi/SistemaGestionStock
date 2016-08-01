@@ -2,6 +2,7 @@ package com.zeonsoft.controller;
 
 import com.zeonsoft.dao.ArticuloDao;
 import com.zeonsoft.dao.ComprobanteDao;
+import com.zeonsoft.dao.ComprobanteTangoDao;
 import com.zeonsoft.model.*;
 
 import java.sql.Date;
@@ -103,6 +104,12 @@ public class SistemaGestionStock {
         comprobantes.add(cpa1590);
         comprobantes.add(cpa1621);
         comprobantes.add(cpa1909);
+    }
+
+    public void sincronizarComprobantes(Date desde, Date hasta) {
+        List<Comprobante> comprobantesTango = ComprobanteTangoDao.getInstancia().getComprobantesTango(desde, hasta);
+
+        System.out.printf("Proceso Finalizado");
     }
 
     public void procesarComprobantes() {
