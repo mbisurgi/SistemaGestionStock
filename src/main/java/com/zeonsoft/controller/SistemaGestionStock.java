@@ -124,7 +124,51 @@ public class SistemaGestionStock {
     }
 
     public void sincronizarComprobantes(Date desde, Date hasta) {
+        Map<String, Comprobante> comprobantes = new HashMap<String, Comprobante>();
         List<Comprobante> comprobantesTango = ComprobanteTangoDao.getInstancia().getComprobantesTango(desde, hasta);
+
+        for (Comprobante comp: this.comprobantes) {
+            if (comp instanceof ComprobanteCpaFac) {
+                comprobantes.put("CPAFAC" + comp.getNroComprobante(), comp);
+            }
+
+            if (comp instanceof ComprobanteCpaCre) {
+                comprobantes.put("CPACRE" + comp.getNroComprobante(), comp);
+            }
+
+            if (comp instanceof ComprobanteVtaFac) {
+                comprobantes.put("VTAFAC" + comp.getNroComprobante(), comp);
+            }
+
+            if (comp instanceof ComprobanteVtaCre) {
+                comprobantes.put("VTACRE" + comp.getNroComprobante(), comp);
+            }
+        }
+
+        for (Comprobante comp: comprobantesTango) {
+            String tipo = "";
+
+            if (comp instanceof ComprobanteCpaFac) {
+                tipo = "CPAFAC";
+            }
+
+            if (comp instanceof ComprobanteCpaCre) {
+                tipo = "CPACRE";
+            }
+
+            if (comp instanceof ComprobanteVtaFac) {
+                tipo = "VTAFAC";
+            }
+
+            if (comp instanceof ComprobanteVtaCre) {
+                tipo = "VTACRE";
+            }
+
+            if (!comprobantes.containsKey(tipo + comp.getNroComprobante())) {
+                ComprobanteDao.getInstancia().insertComprobante(comp);
+                this.comprobantes.add(comp);
+            }
+        }
 
         System.out.println("Proceso Finalizado Correctamente");
     }

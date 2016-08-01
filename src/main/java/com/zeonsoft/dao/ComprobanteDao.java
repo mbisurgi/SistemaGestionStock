@@ -52,7 +52,46 @@ public class ComprobanteDao {
             ps.setString(4, comp.getEntidad());
 
             ps.executeUpdate();
+        } catch (SQLException ex) {
 
+        } finally {
+            PoolConnectionSistema.getInstancia().releaseConnection(con);
+        }
+    }
+
+    private void insertItems(Comprobante comp) {
+        Connection con = PoolConnectionSistema.getInstancia().getConnection();
+
+        try {
+            String sql = "Insert Into itemscomprobante (comp, nroComprobante, nroArticulo, cantidad, precio) Values (?, ?, ?, ?, ?)";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            if (comp instanceof ComprobanteCpaFac) {
+                ps.setString(1, "CPAFAC");
+            }
+
+            if (comp instanceof ComprobanteCpaCre) {
+                ps.setString(1, "CPACRE");
+            }
+
+            if (comp instanceof ComprobanteVtaFac) {
+                ps.setString(1, "VTAFAC");
+            }
+
+            if (comp instanceof ComprobanteVtaCre) {
+                ps.setString(1, "VTACRE");
+            }
+
+            ps.setString(2, comp.getNroComprobante());
+
+            for (ItemComprobante item: comp.getItems()) {
+                ps.setString(3, item.getArticulo().getNroArticulo());
+                ps.setInt(4, item.getCantidad());
+                ps.setFloat(5, item.getPrecio());
+
+                ps.executeUpdate();
+            }
         } catch (SQLException ex) {
 
         } finally {
