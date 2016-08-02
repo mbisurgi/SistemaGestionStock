@@ -97,10 +97,10 @@ public class ControllerFrmResumen implements Initializable {
         float margenPor = 0;
 
         for (ArticuloView art: resumen) {
-            stock$ = stock$ + Float.valueOf(art.getStock$().replace('.', ' ').replaceAll("\\s", "").replace(',', '.'));
-            venta$ = venta$ + Float.valueOf(art.getVenta$().replace('.', ' ').replaceAll("\\s", "").replace(',', '.'));
-            cmv$ = cmv$+ Float.valueOf(art.getCmv$().replace('.', ' ').replaceAll("\\s", "").replace(',', '.'));
-            margen$ = margen$ + Float.valueOf(art.getMargen$().replace('.', ' ').replaceAll("\\s", "").replace(',', '.'));
+            stock$ = stock$ + art.getStock$();
+            venta$ = venta$ + art.getVenta$();
+            cmv$ = cmv$+ art.getCmv$();
+            margen$ = margen$ + art.getMargen$();
         }
 
         margenPor = (margen$ / venta$) * 100;
