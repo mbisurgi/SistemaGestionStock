@@ -80,7 +80,7 @@ public class ComprobanteTangoDao {
                     comp.setItems(getItems("VTA", "FAC", rs.getString("N_COMP")));
                 }
 
-                if (rs.getString("T_COMP").equals("NCR")) {
+                if (rs.getString("T_COMP").equals("NCR") || rs.getString("T_COMP").equals("N/C")) {
                     comp = new ComprobanteVtaCre(rs.getDate("FECHA_EMIS"), rs.getString("COD_CLIENT"), rs.getString("N_COMP"));
                     comp.setItems(getItems("VTA", "NCR", rs.getString("N_COMP")));
                 }
