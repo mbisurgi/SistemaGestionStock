@@ -176,12 +176,6 @@ public class SistemaGestionStock {
     }
 
     public void procesarComprobantes() {
-//        comprobantes.sort(new Comparator<Comprobante>() {
-//            public int compare(Comprobante o1, Comprobante o2) {
-//                return o1.getFecha().compareTo(o2.getFecha());
-//            }
-//        });
-
         comprobantes.sort((o1, o2) -> o1.getFecha().compareTo(o2.getFecha()));
 
 //        List<Comprobante> filtrado = new ArrayList<>();
