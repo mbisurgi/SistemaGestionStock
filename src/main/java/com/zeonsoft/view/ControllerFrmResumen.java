@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -31,17 +32,17 @@ public class ControllerFrmResumen implements Initializable {
     @FXML
     TableColumn<ArticuloView, Integer> colStockUni;
     @FXML
-    TableColumn<ArticuloView, String> colStock$;
+    TableColumn<ArticuloView, Float> colStock$;
     @FXML
     TableColumn<ArticuloView, Integer> colVentaUni;
     @FXML
-    TableColumn<ArticuloView, String> colVenta$;
+    TableColumn<ArticuloView, Float> colVenta$;
     @FXML
-    TableColumn<ArticuloView, String> colCmv$;
+    TableColumn<ArticuloView, Float> colCmv$;
     @FXML
-    TableColumn<ArticuloView, String> colMargen$;
+    TableColumn<ArticuloView, Float> colMargen$;
     @FXML
-    TableColumn<ArticuloView, String> colMargenPor;
+    TableColumn<ArticuloView, Float> colMargenPor;
     @FXML
     Label lblStock$;
     @FXML
@@ -68,14 +69,64 @@ public class ControllerFrmResumen implements Initializable {
         colNro.setCellValueFactory(new PropertyValueFactory<ArticuloView, String>("nro"));
         colArticulo.setCellValueFactory(new PropertyValueFactory<ArticuloView, String>("articulo"));
         colStockUni.setCellValueFactory(new PropertyValueFactory<ArticuloView, Integer>("stockUni"));
-        colStock$.setCellValueFactory(new PropertyValueFactory<ArticuloView, String>("stock$"));
+        colStock$.setCellValueFactory(new PropertyValueFactory<ArticuloView, Float>("stock$"));
         colVentaUni.setCellValueFactory(new PropertyValueFactory<ArticuloView, Integer>("ventaUni"));
-        colVenta$.setCellValueFactory(new PropertyValueFactory<ArticuloView, String>("venta$"));
-        colCmv$.setCellValueFactory(new PropertyValueFactory<ArticuloView, String>("cmv$"));
-        colMargen$.setCellValueFactory(new PropertyValueFactory<ArticuloView, String>("margen$"));
-        colMargenPor.setCellValueFactory(new PropertyValueFactory<ArticuloView, String>("margenPor"));
+        colVenta$.setCellValueFactory(new PropertyValueFactory<ArticuloView, Float>("venta$"));
+        colCmv$.setCellValueFactory(new PropertyValueFactory<ArticuloView, Float>("cmv$"));
+        colMargen$.setCellValueFactory(new PropertyValueFactory<ArticuloView, Float>("margen$"));
+        colMargenPor.setCellValueFactory(new PropertyValueFactory<ArticuloView, Float>("margenPor"));
+
+        formatoCeldasInteger(colStockUni);
+        formatoCeldasInteger(colVentaUni);
+
+        formatoCeldasFloat(colStock$);
+        formatoCeldasFloat(colVenta$);
+        formatoCeldasFloat(colCmv$);
+        formatoCeldasFloat(colMargen$);
+        formatoCeldasFloat(colMargenPor);
 
         tblResumen.setItems(resumen);
+    }
+
+    private void formatoCeldasInteger(TableColumn col) {
+        col.setCellFactory(column -> {
+            return new TableCell<ArticuloView, Integer>() {
+                @Override
+                protected void updateItem(Integer item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {
+                        setText(item.toString());
+                        setAlignment(Pos.CENTER_RIGHT);
+                    }
+                }
+            };
+        });
+    }
+
+    private void formatoCeldasFloat(TableColumn col) {
+        col.setCellFactory(column -> {
+            return new TableCell<ArticuloView, Float>() {
+                @Override
+                protected void updateItem(Float item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {
+                        DecimalFormat df = new DecimalFormat();
+
+                        df.setMaximumFractionDigits(2);
+                        df.setMinimumFractionDigits(2);
+
+                        setText(df.format(item));
+                        setAlignment(Pos.CENTER_RIGHT);
+                    }
+                }
+            };
+        });
     }
 
     @FXML

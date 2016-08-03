@@ -21,9 +21,20 @@ public class ComprobanteCpaFac extends Comprobante {
             int cantidadArt = art.getStock().getCantidad();
             float costoArt = art.getStock().getCosto();
 
-            float costoTotal = (cantidadArt * costoArt) + (item.getCantidad() * item.getPrecio());
-            int newCantidad = cantidadArt + item.getCantidad();
+            float costoTotal = 0;
+            int newCantidad = 0;
+
+            if (cantidadArt < 0) {
+                costoTotal = (cantidadArt * -1 * costoArt) + (item.getCantidad() * item.getPrecio());
+                newCantidad = cantidadArt * -1 + item.getCantidad();
+            } else {
+                costoTotal = (cantidadArt * costoArt) + (item.getCantidad() * item.getPrecio());
+                newCantidad = cantidadArt + item.getCantidad();
+            }
+
             float newCosto = costoTotal / newCantidad;
+
+            newCantidad = cantidadArt + item.getCantidad();
 
             art.getStock().setCantidad(newCantidad);
             art.getStock().setCosto(newCosto);

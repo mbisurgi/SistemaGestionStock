@@ -21,9 +21,26 @@ public class ComprobanteCpaCre extends Comprobante {
             int cantidadArt = art.getStock().getCantidad();
             float costoArt = art.getStock().getCosto();
 
-            float costoTotal = (cantidadArt * costoArt) + (item.getCantidad() * -1 * item.getPrecio());
-            int newCantidad = cantidadArt + item.getCantidad() * -1;
-            float newCosto = costoTotal / newCantidad;
+            float costoTotal = 0;
+            int newCantidad = 0;
+
+            if (costoArt < item.getPrecio()) {
+                costoTotal = (cantidadArt * costoArt) + (item.getCantidad() * item.getPrecio());
+                newCantidad = cantidadArt + item.getCantidad();
+            } else {
+                costoTotal = (cantidadArt * costoArt) + (item.getCantidad() * -1 * item.getPrecio());
+                newCantidad = cantidadArt + item.getCantidad() * -1;
+            }
+
+            float newCosto = 0;
+
+            if (newCantidad == 0) {
+                newCosto = 0;
+            } else {
+                newCosto = costoTotal / newCantidad;
+            }
+
+            newCantidad = cantidadArt + item.getCantidad() * -1;
 
             art.getStock().setCantidad(newCantidad);
             art.getStock().setCosto(newCosto);

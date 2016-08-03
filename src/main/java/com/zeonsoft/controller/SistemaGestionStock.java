@@ -8,6 +8,8 @@ import com.zeonsoft.model.*;
 
 import java.sql.Date;
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class SistemaGestionStock {
     private static SistemaGestionStock instancia = null;
@@ -179,6 +181,22 @@ public class SistemaGestionStock {
                 return o1.getFecha().compareTo(o2.getFecha());
             }
         });
+
+//        List<Comprobante> filtrado = new ArrayList<>();
+//
+//        for (Comprobante comp: comprobantes) {
+//            List<ItemComprobante> items = comp.getItems().stream().filter(i -> i.getArticulo().getNroArticulo().equals("140021015")).collect(Collectors.toList());
+//
+//            comp.setItems(items);
+//
+//            if (comp.getItems().size() != 0) {
+//                filtrado.add(comp);
+//            }
+//        }
+//
+//        for (Comprobante comp: filtrado) {
+//            comp.updateStock();
+//        }
 
         for (Comprobante comp: comprobantes) {
             comp.updateStock();
