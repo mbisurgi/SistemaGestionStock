@@ -80,9 +80,14 @@ public class ComprobanteTangoDao {
                     comp.setItems(getItems("VTA", "FAC", rs.getString("N_COMP")));
                 }
 
-                if (rs.getString("T_COMP").equals("NCR") || rs.getString("T_COMP").equals("N/C")) {
+                if (rs.getString("T_COMP").equals("NCR")) {
                     comp = new ComprobanteVtaCre(rs.getDate("FECHA_EMIS"), rs.getString("COD_CLIENT"), rs.getString("N_COMP"));
                     comp.setItems(getItems("VTA", "NCR", rs.getString("N_COMP")));
+                }
+
+                if (rs.getString("T_COMP").equals("N/C")) {
+                    comp = new ComprobanteVtaCre(rs.getDate("FECHA_EMIS"), rs.getString("COD_CLIENT"), rs.getString("N_COMP"));
+                    comp.setItems(getItems("VTA", "N/C", rs.getString("N_COMP")));
                 }
 
                 if (comp != null) {
@@ -94,34 +99,6 @@ public class ComprobanteTangoDao {
         } finally {
             PoolConnectionTango.getInstancia().releaseConnection(con);
         }
-
-        /*for (ComprobanteTangoCpa tangoCpa: tangoCompras) {
-            Comprobante comp = null;
-
-            if (tangoCpa.getT_comp().equals("FAC")) {
-                 comp = new ComprobanteCpaFac(tangoCpa.getFecha_emis(), tangoCpa.getCod_provee(), tangoCpa.getN_comp());
-            }
-
-            if (tangoCpa.getT_comp().equals("N/C")) {
-                comp = new ComprobanteCpaCre(tangoCpa.getFecha_emis(), tangoCpa.getCod_provee(), tangoCpa.getN_comp());
-            }
-
-            comprobantes.add(comp);
-        }
-
-        for (ComprobanteTangoVta tangoVta: tangoVentas) {
-            Comprobante comp = null;
-
-            if (tangoVta.getT_comp().equals("FAC")) {
-                comp = new ComprobanteVtaFac(tangoVta.getFecha_emis(), tangoVta.getCod_client(), tangoVta.getN_comp());
-            }
-
-            if (tangoVta.getT_comp().equals("NCR")) {
-                comp = new ComprobanteVtaCre(tangoVta.getFecha_emis(), tangoVta.getCod_client(), tangoVta.getN_comp());
-            }
-
-            comprobantes.add(comp);
-        }*/
 
         return comprobantes;
     }

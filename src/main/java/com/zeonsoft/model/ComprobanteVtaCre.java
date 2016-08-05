@@ -20,6 +20,8 @@ public class ComprobanteVtaCre extends Comprobante {
 
             art.getStock().addItem(this.getFecha(), item.getCantidad(), pcioCpa);
 
+            art.getMargen().addItem(this.getFecha(), item.getCantidad() * -1, pcioCpa, item.getPrecio());
+
             int cantidadArt = art.getStock().getCantidad();
 
             int newCantidad = cantidadArt + item.getCantidad();
