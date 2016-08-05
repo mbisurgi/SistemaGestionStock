@@ -243,7 +243,7 @@ public class SistemaGestionStock {
         List<ArticuloView> listado = new ArrayList<ArticuloView>();
 
         for (Articulo art: articulos) {
-            if (art.getStock().getItems().size() != 0 && art.getMargen().getItems().size() != 0) {
+            if (art.getStock().getItems().size() != 0 || art.getMargen().getItems().size() != 0) {
                 listado.add(art.getArticuloView(desde, hasta));
             }
         }
