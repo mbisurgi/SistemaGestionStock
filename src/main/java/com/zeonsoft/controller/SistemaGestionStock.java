@@ -145,6 +145,14 @@ public class SistemaGestionStock {
             if (comp instanceof ComprobanteVtaCre) {
                 comprobantesSync.put("VTACRE" + comp.getNroComprobante(), comp);
             }
+
+            if (comp instanceof ComprobanteStoIng) {
+                comprobantesSync.put("STOING" + comp.getNroComprobante(), comp);
+            }
+
+            if (comp instanceof ComprobanteStoEgr) {
+                comprobantesSync.put("STOEGR" + comp.getNroComprobante(), comp);
+            }
         }
 
         for (Comprobante comp: comprobantesTango) {
@@ -164,6 +172,14 @@ public class SistemaGestionStock {
 
             if (comp instanceof ComprobanteVtaCre) {
                 tipo = "VTACRE";
+            }
+
+            if (comp instanceof ComprobanteStoIng) {
+                tipo = "STOING";
+            }
+
+            if (comp instanceof ComprobanteStoEgr) {
+                tipo = "STOEGR";
             }
 
             if (!comprobantesSync.containsKey(tipo + comp.getNroComprobante())) {

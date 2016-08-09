@@ -94,6 +94,33 @@ public class ComprobanteTangoDao {
                     comprobantes.add(comp);
                 }
             }
+
+            sql = "Select NCOMP_IN_S, T_COMP, N_COMP, TCOMP_IN_S, FECHA_EMIS From STA14 Where FECHA_EMIS >= ? And FECHA_EMIS <= ? And (TCOMP_IN_S = ? Or TCOMP_IN_S = ?)";
+            ps = con.prepareStatement(sql);
+            ps.setDate(1, desde);
+            ps.setDate(2, hasta);
+            ps.setString(3, "VE");
+            ps.setString(4, "VS");
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Comprobante comp = null;
+
+                if (rs.getString("TCOMP_IN_S").equals("VE")) {
+                    comp = new ComprobanteStoIng(rs.getDate("FECHA_EMIS"), "999999", rs.getString("N_COMP"));
+                    comp.setItems(getItems("STO", "ING", rs.getString("NCOMP_IN_S")));
+                }
+
+                if (rs.getString("TCOMP_IN_S").equals("VS")) {
+                    comp = new ComprobanteStoEgr(rs.getDate("FECHA_EMIS"), "999999", rs.getString("N_COMP"));
+                    comp.setItems(getItems("STO", "EGR", rs.getString("NCOMP_IN_S")));
+                }
+
+                if (comp != null) {
+                    comprobantes.add(comp);
+                }
+            }
         } catch (SQLException ex) {
 
         } finally {
@@ -128,6 +155,13 @@ public class ComprobanteTangoDao {
                 ps = con.prepareStatement(sql);
                 ps.setString(1, comp);
                 ps.setString(2, nroComprobante);
+            }
+
+            if (tipo.equals("STO")) {
+                sql = "Select COD_ARTICU, CANTIDAD, PRECIO As PRECIO_NET From STA20 Where NCOMP_IN_S = ?";
+
+                ps = con.prepareStatement(sql);
+                ps.setString(1, nroComprobante);
             }
 
             rs = ps.executeQuery();

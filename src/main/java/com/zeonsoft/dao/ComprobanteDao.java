@@ -47,6 +47,14 @@ public class ComprobanteDao {
                 ps.setString(1, "VTACRE");
             }
 
+            if (comp instanceof ComprobanteStoIng) {
+                ps.setString(1, "STOING");
+            }
+
+            if (comp instanceof ComprobanteStoEgr) {
+                ps.setString(1, "STOEGR");
+            }
+
             ps.setString(2, comp.getNroComprobante());
             ps.setDate(3, comp.getFecha());
             ps.setString(4, comp.getEntidad());
@@ -84,6 +92,14 @@ public class ComprobanteDao {
 
             if (comp instanceof ComprobanteVtaCre) {
                 ps.setString(1, "VTACRE");
+            }
+
+            if (comp instanceof ComprobanteStoIng) {
+                ps.setString(1, "STOING");
+            }
+
+            if (comp instanceof ComprobanteStoEgr) {
+                ps.setString(1, "STOEGR");
             }
 
             ps.setString(2, comp.getNroComprobante());
