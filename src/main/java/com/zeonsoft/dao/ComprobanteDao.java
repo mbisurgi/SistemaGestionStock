@@ -154,6 +154,16 @@ public class ComprobanteDao {
                     comp.setItems(getItems("VTACRE", rs.getString("nroComprobante")));
                 }
 
+                if (rs.getString("comp").equals("STOING")) {
+                    comp = new ComprobanteVtaCre(rs.getDate("fecha"), rs.getString("entidad"), rs.getString("nroComprobante"));
+                    comp.setItems(getItems("STOING", rs.getString("nroComprobante")));
+                }
+
+                if (rs.getString("comp").equals("STOEGR")) {
+                    comp = new ComprobanteVtaCre(rs.getDate("fecha"), rs.getString("entidad"), rs.getString("nroComprobante"));
+                    comp.setItems(getItems("STOEGR", rs.getString("nroComprobante")));
+                }
+
                 comprobantes.add(comp);
             }
         } catch (SQLException ex) {
